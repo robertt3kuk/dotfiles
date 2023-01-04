@@ -69,9 +69,22 @@ typescript.setup({
 		on_attach = on_attach,
 	},
 })
+
+-- configure svelte server
+lspconfig.svelte.setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
+	cmd = { "svelteserver", "--stdio" },
+	filetypes = { "svelte" },
+})
+
 lspconfig["clangd"].setup({
 	capabilities = capabilities,
 	on_attach = on_attach,
+	flags = {
+		-- This will be the default in neovim 0.7+
+		debounce_text_changes = 150,
+	},
 })
 
 -- configure css server
@@ -91,6 +104,12 @@ lspconfig["emmet_ls"].setup({
 	capabilities = capabilities,
 	on_attach = on_attach,
 	filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "svelte" },
+})
+
+-- configure omnisharp language server
+lspconfig["omnisharp"].setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
 })
 --
 --[[gopls lang server
@@ -131,4 +150,50 @@ lspconfig["sumneko_lua"].setup({
 			},
 		},
 	},
+})
+-- configure elixirls lsp
+lspconfig["elixirls"].setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
+})
+-- configure rust
+lspconfig.rust_analyzer.setup({
+	on_attach = on_attach,
+	settings = {
+		["rust-analyzer"] = {
+			imports = {
+				granularity = {
+					group = "module",
+				},
+				prefix = "self",
+			},
+			cargo = {
+				buildScripts = {
+					enable = true,
+				},
+			},
+			procMacro = {
+				enable = true,
+			},
+		},
+	},
+})
+-- configure python
+lspconfig["jedi_language_server"].setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
+})
+
+-- configure vlang
+lspconfig.vls.setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
+	filetypes = { "v" },
+})
+
+-- configure marksman
+lspconfig.marksman.setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
+	cmd = { "marksman-macos", "server" },
 })

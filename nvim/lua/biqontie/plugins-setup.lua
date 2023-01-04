@@ -34,6 +34,7 @@ return packer.startup(function(use)
 	use("nvim-lua/plenary.nvim") -- lua functions that many plugins use
 
 	use({ "ellisonleao/gruvbox.nvim" }) -- preferred colorscheme
+	use("olimorris/onedarkpro.nvim")
 
 	use("christoomey/vim-tmux-navigator") -- tmux & split window navigation
 
@@ -48,6 +49,9 @@ return packer.startup(function(use)
 
 	-- file explorer
 	use("nvim-tree/nvim-tree.lua")
+
+	--neoscroll
+	use("karb94/neoscroll.nvim")
 
 	-- vs-code like icons
 	use("nvim-tree/nvim-web-devicons")
@@ -104,6 +108,8 @@ return packer.startup(function(use)
 	use("romgrk/barbar.nvim")
 	use("ray-x/go.nvim")
 	use("ray-x/guihua.lua") -- recommanded if need floating window support
+	--colorscheme
+	use("sainnhe/sonokai") --sonokai
 
 	if packer_bootstrap then
 		require("packer").sync()
